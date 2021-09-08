@@ -1,4 +1,3 @@
-/* Javascript 샘플 코드 */
 import axios from "axios";
 
 export function GetCovidData() {
