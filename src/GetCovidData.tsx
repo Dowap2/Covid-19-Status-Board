@@ -1,38 +1,32 @@
 /* Javascript 샘플 코드 */
+import axios from "axios";
 
 export function GetCovidData() {
-  var xhr = new XMLHttpRequest();
   var url =
-    "http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson"; /*URL*/
+    "http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson";
   var queryParams =
-    "?" + encodeURIComponent("ServiceKey") + "=" + "ServiceKey"; /*Service Key*/
-  queryParams +=
-    "&" + encodeURIComponent("pageNo") + "=" + encodeURIComponent("1"); /**/
-  queryParams +=
-    "&" + encodeURIComponent("numOfRows") + "=" + encodeURIComponent("10"); /**/
-  queryParams +=
+    "?" +
+    encodeURIComponent("ServiceKey") +
+    "=" +
+    process.env.REACT_APP_API_KEY +
+    "&" +
+    encodeURIComponent("pageNo") +
+    "=" +
+    encodeURIComponent("1") +
+    "&" +
+    encodeURIComponent("numOfRows") +
+    "=" +
+    encodeURIComponent("1") +
     "&" +
     encodeURIComponent("startCreateDt") +
     "=" +
-    encodeURIComponent("20200310"); /**/
-  queryParams +=
+    encodeURIComponent("20210903") +
     "&" +
     encodeURIComponent("endCreateDt") +
     "=" +
-    encodeURIComponent("20200315"); /**/
-  xhr.open("GET", url + queryParams);
-  xhr.onreadystatechange = function() {
-    if (this.readyState == 4) {
-      console.log(
-        "Status: " +
-          this.status +
-          "nHeaders: " +
-          this.getAllResponseHeaders() +
-          "nBody: " +
-          this.responseText
-      );
-    }
-  };
+    encodeURIComponent("20210904");
 
-  xhr.send("");
+  axios.get(url + queryParams).then(function(res) {
+    console.log(res);
+  });
 }
